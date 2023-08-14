@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (max-width: 1025px) {
+  .no-margin {
+    font-size: 12px !important;
   }
 }
 
-.App-header {
-  background-color: #282c34;
+@media (max-width: 860px) {
+  .nft-info {
+    flex-direction: column;
+  }
+  .nft-container img {
+    height: 91% !important;
+  }
+  .nft-container {
+    padding-right: 2px !important;
+    padding-left: 2px !important;
+    padding-top: 2px !important;
+  }
+}
+/* 
+@media (max-width: 815px) {
+
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+.auto-sizer-container {
+  display: grid;
   min-height: 100vh;
+}
+
+.nft-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+p.no-margin {
+  text-align: right;
+  width: min-content;
+}
+
+.nft-info {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  position: relative;
+  top: -5px;
+  font-size: 11px;
 }
 
-.App-link {
-  color: #61dafb;
+.nft-container {
+  padding: 10px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  padding-top: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nft-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-bar {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.1875em;
+  /* background: rgba(0,0,0,0); */
+  box-shadow: inset 0px 2px 26px rgba(0, 0, 0, 0.06),
+    0 0 0 3px rgba(0, 0, 100, 0.1);
+}
+.search-bar-container {
+  text-align: center;
 }
