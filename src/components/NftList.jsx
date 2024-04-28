@@ -3,11 +3,33 @@ import { FixedSizeGrid as Grid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import SearchBar from "./SearchBar";
 import Swal from "sweetalert2";
-import { fetchNFTs } from "./../api"; 
+import { fetchNFTs } from "./../api";
 import NftItem from "./NftItem";
 
 const NftList = () => {
-  const [nfts, setNFTs] = useState([]);
+  function duplicateArray(array, times) {
+    let duplicatedArray = [];
+    for (let i = 0; i < times; i++) {
+      duplicatedArray = duplicatedArray.concat(array);
+    }
+    return duplicatedArray;
+  }
+
+  const randomPrice = () => Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+
+  const randomValue = () => Math.floor(Math.random() * 7) + 1;
+
+  const [nfts, setNFTs] = useState(
+    duplicateArray(
+      Array.from({ length: 100 }, (_, index) => ({
+        img: `/images/b${randomValue()}.png`,
+        title: `Nft ${randomValue()}`,
+        price: randomPrice(),
+        id: index,
+      })),
+      100
+    )
+  );
   const [filteredNFTs, setFilteredNFTs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,6 +74,7 @@ const NftList = () => {
     const numColumns = 5;
     const numRows = 4;
     const initialLoadCount = numColumns * numRows;
+
     loadMoreNFTs(0, initialLoadCount);
     calculateContainerHeight();
     window.addEventListener("resize", calculateContainerHeight);
@@ -74,10 +97,7 @@ const NftList = () => {
         title: "No NFTs match the search",
       });
     }
-
   };
-
-  
 
   const displayNFTs = searchTerm.length > 0 ? filteredNFTs : nfts;
 
@@ -121,13 +141,7 @@ const NftList = () => {
                     return null;
                   }
 
-                  return (
-                    <NftItem
-                      key={nft.id}
-                      nft={nft}
-                      style={style}
-                    />
-                  );
+                  return <NftItem key={nft.id} nft={nft} style={style} />;
                 }}
               </Grid>
             );
